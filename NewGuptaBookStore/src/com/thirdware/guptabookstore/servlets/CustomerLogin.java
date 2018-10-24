@@ -2,6 +2,7 @@ package com.thirdware.guptabookstore.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,7 +59,10 @@ public class CustomerLogin extends HttpServlet {
 			System.out.println("email is not Registered");
 			System.out.println(c.getCname()+" "+c.getPassword());
 			System.out.println("Redirecting to Registration page");
-			response.sendRedirect("CustRegis.jsp");
+			String msg="Email does not exists!";
+			request.setAttribute("error", msg);
+			RequestDispatcher rd = request.getRequestDispatcher("views/customer/CustRegis.jsp");
+			rd.forward(request, response);			
 		}
 		/*else if(c.getEmail().equals(email))
 		{
@@ -73,10 +77,17 @@ public class CustomerLogin extends HttpServlet {
 				System.out.println("Logged in");
 				HttpSession session=request.getSession();  
 				session.setAttribute("email",c.getEmail());
-				session.setAttribute("role",c.getRole());
-				System.out.println("session "+session.getAttribute("role"));
+				session.setAttribute("username", c.getCname());
+				String name=customerDao.role(c.getRoleid());
+				session.setAttribute("rolename",name);
+				System.out.println("session "+session.getAttribute("rolename"));
 				response.sendRedirect("FetchAllAuthoServlet");
 				//response.sendRedirect("CustRegis.jsp");
+			}else{
+				String msg="Password is incorrect!";
+				request.setAttribute("error", msg);
+				RequestDispatcher rd = request.getRequestDispatcher("views/emp/LoginPage.jsp");
+				rd.forward(request, response);
 			}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		doGet(request, response);

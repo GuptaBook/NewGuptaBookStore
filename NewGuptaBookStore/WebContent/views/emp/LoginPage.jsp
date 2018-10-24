@@ -132,15 +132,19 @@ span.psw {
     }
 }
 </style>
-<body>
+<body><div class="container"><h3 align="center" style="color:red">${error}</h3>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<h3 align="center" style="color:green">${msg} ${username}</h3>
 <div class="container login-container">
             <div class="row">
                 <div class="col-md-6 login-form-1">
                     <h3>User Login Form</h3>
                     <div class="login-logo">
-                        <img src="imgavatar.png" width="120px" alt=""/>
+                        <img src="../../../../../resources/images/uploadDir/imgavatar.png" width="100px" alt=""/>
                     </div><c:url value="/CustomerLogin" var="url"/>
-                    <form action="${url }" method="post">
+                    <form action="${url}" method="post">
                     
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Your Email" name="email" value=""  required/>
@@ -175,48 +179,8 @@ span.psw {
                         </div>
                     </form>
                 </div>
-                <div class="col-md-6 login-form-2">
-                <h3>Employee Login Form</h3>
-                    <div class="login-logo">
-                        <img src="imgavatar2.png" width="120px" alt=""/>
-                    </div><c:url value="/EmpLogin" var="url"/>
-                    <form action="${url}" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" pattern="[^@]*@[^ @]*" placeholder="Your Email" name="email" value="" required/>
-                        </div>
-                        <script language = "Javascript">
-      function emailcheck(str) {
-
-    var at="@"
-    var dot="."
-    var lat=str.indexOf(at)
-    var lstr=str.length
-    var ldot=str.indexOf(dot)
-    if (str.indexOf(at)==-1){
-        alert("Invalid E-mail ID")
-
-    return false
-}eles
- return true
-}
-</script>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password" name="password" value="" required />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btnSubmit" name="login" value="Login" />
-                        </div>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                        
-                        
-                        <div class="form-group">
-
-                            
-                            <!-- <a href="#" class="btnForgetPwd" value="Login">Forget Password?</a> -->
-                        </div>
-                    </form>
-                </div>
+                
             </div>
-        </div>
+        </div></div><div class="col-md-4"></div></div></div>
 </body>
 </html>

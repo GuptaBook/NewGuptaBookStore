@@ -62,8 +62,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 </head>
 <body>
-<c:url value="CustomerRegistration" var="url"/>
-<form action="${CustomerRegistration}" style="max-width:500px;margin:auto">
+<h3 align="center" style="color:red">${error}</h3>
+<c:url value="/CustomerRegistration" var="url"/>
+<form action="${url}" style="max-width:500px;margin:auto" method="post">
   <h2> User Registration Form</h2>
   <div class="input-container">
     <i class="fa fa-user icon"></i>
@@ -92,8 +93,9 @@ function emailcheck(str) {
 }
 </script>
   <div class="input-container">
-    <i class="fa fa-envelope icon"></i>
-    <input class="input-field" type="text"  pattern=".{10}" title="Enter Valid Mob No"  placeholder="phoneno" name="phoneno" required>
+    <i class="fa fa-phone icon"></i>
+    
+    <input class="input-field" type="text"   pattern=".{10}" title="Enter Valid Mob No"  placeholder="phoneno" name="phoneno" required>
   </div>
   <div class="input-container">
     <i class="fa fa-key icon"></i>
@@ -102,7 +104,5 @@ function emailcheck(str) {
 
   <button type="submit" class="btn">Register</button>
 </form>
-
-
-
+</body>
 </html>

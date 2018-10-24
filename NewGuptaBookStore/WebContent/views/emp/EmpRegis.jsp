@@ -62,8 +62,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 </head>
 <body>
-<c:url value="EmpRegistration" var="url"/>
-<form action="${url }" style="max-width:500px;margin:auto">
+<h3 align="center" style="color:red">${error}</h3>
+<c:url value="/EmpRegistration" var="url"/>
+<form action="${url }" style="max-width:500px;margin:auto" method="post">
   <h2>Employee Registration Form</h2>
   <div class="input-container">
     <i class="fa fa-user icon"></i>
@@ -71,36 +72,31 @@ body {font-family: Arial, Helvetica, sans-serif;}
   </div>
   <div class="input-container">
     <i class="fa fa-envelope icon"></i>
-    <input class="input-field" type="email"  placeholder="Email" name="email" required>
-  </div>  
-<script language = "Javascript">
-
-function emailcheck(str) {
-
-    var at="@"
-    var dot="."
-    var lat=str.indexOf(at)
-    var lstr=str.length
-    var ldot=str.indexOf(dot)
-    if (str.indexOf(at)==-1){
-        alert("Invalid E-mail ID")
-
-    return false
-}else
- return true
+    <input class="input-field" type="email"  placeholder="Email"  name="email" required>
+  </div> 
+  <script>
+function validate(){
+var num=document.myform.num.value;
+if (isNaN(num)){
+  document.getElementById("numloc").innerHTML="Enter Numeric value only";
+  return false;
+}else{
+  return true;
+  }
 }
 </script>
   <div class="input-container">
     <i class="fa fa-envelope icon"></i>
-    <input class="input-field" type="text"  pattern=".{10}" title="Enter Valid Mob No"  placeholder="phoneno" name="phoneno" required>
+    <input class="input-field" type="tel" pattern=".{10}" title="Enter Valid Mob No"  placeholder="phoneno" name="phoneno" required>
   </div>
   <div class="input-container">
    <i class="fa fa-key icon"></i>
     <input class="input-field" type="password" placeholder="Password" name="password" required>
   </div>
-
-  <button type="submit" class="btn">Register</button>
+  <div class="input-container">
+  <button  type="submit" class="btn">Register</button>
+  </div>
 </form>
-
+</body>
 
 </html>

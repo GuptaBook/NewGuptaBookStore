@@ -53,7 +53,7 @@ public class AuthorDaoImpl implements AuthorDao {
 		if (con == null) {
 			System.out.println("Not connected, Please check");
 		} else {
-			String query = "select * from book where authid = ?";
+			String query = "select * from book where bookstatus=1 and authid = ?";
 			try {
 				List<Book> ls=new ArrayList<>();
 				PreparedStatement psmt = con.prepareStatement(query);

@@ -23,5 +23,8 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/jars/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/jars/jtds-1.2.7.jar"/>
+	<classpathentry kind="lib" path="C:/jars/javax.servlet-3.0.jar/javax.servlet-3.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

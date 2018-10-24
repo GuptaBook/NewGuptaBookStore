@@ -243,23 +243,27 @@ div.section>div>input {
 				<h3 style="margin-top: 0px;">RS. ${bookdetail.price }</h3>
 
 				<!-- Detalles especificos del producto -->
-
+<c:if test="${sessionScope.rolename=='ROLE_USER' }">
 <input type="hidden" name="bookid" value="${bookdetail.bookid}">
 				<div class="section" style="padding-bottom: 20px;">
 					<h6 class="title-attr">
-						<small>CANTIDAD</small>
+						<small>Quantity</small>
 					</h6>
+					</c:if>
+					<c:if test="${sessionScope.rolename=='ROLE_USER' }">
 					<div>
 						<div class="btn-minus">
 							<span class="glyphicon glyphicon-minus"></span>
 						</div>
-						<input value="1" name="quantity" />
+						<input type="number" value="1" min="1" max="${bookdetail.quantity }" name="quantity" />
 						<div class="btn-plus">
 							<span class="glyphicon glyphicon-plus"></span>
 						</div>
 					</div>
+					</c:if>
+					
 				</div>
-
+<c:if test="${sessionScope.rolename=='ROLE_USER' }">
 				<!-- Botones de compra -->
 				<div class="section" style="padding-bottom: 20px;">
 					<button class="btn btn-success">
@@ -269,6 +273,7 @@ div.section>div>input {
 					</button>
 
 				</div>
+				</c:if>
 			</div>
 
 

@@ -8,6 +8,7 @@
 <title>Cart Page</title><%@ include file="../header.jsp" %>
 </head>
 <body>
+<h3 align="center" style="color:red;">${error}</h3>
 	<c:url value="" var="url" />
 	<a href="<c:url value = "views/cart/cart.jsp"/>"></a> ${url }
 	<h1>Cart Details</h1>
@@ -40,6 +41,7 @@
 		<tfoot>
 			<!-- <td>Total no of records: 1</td>
  </tfoot>-->
+ <a href="PlaceOrderServlet" class="btn btn-info">Place Order</a>
 	</table>
 </body>
 </html>

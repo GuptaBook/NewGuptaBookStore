@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 import com.thirdware.guptabookstore.dao.AuthorDao;
 import com.thirdware.guptabookstore.dao.SubjectDao;
 import com.thirdware.guptabookstore.daoimpl.AuthorDaoImpl;
@@ -44,10 +46,14 @@ public class FetchAllAuthoServlet extends HttpServlet {
 		List<Subject> ls = subjectDao.getAllSubject();
 		request.setAttribute("listSubject", ls);
 		request.setAttribute("listAuthor", la);
+		for(Subject s:ls)
+			System.out.println(s.getSubid()+" "+s.getSubname()+" "+s.getSubdescription());
+		for(Author a:la)
+			System.out.println(a.getAuthdesc()+" "+a.getAuthid()+" "+a.getAuthname());
 		HttpSession session=request.getSession();
 		session.setAttribute("listSubject",ls);
 		session.setAttribute("listAuthor",la);
-		RequestDispatcher rd = request.getRequestDispatcher("views/header.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("views/home.jsp");
 		rd.forward(request, response);	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

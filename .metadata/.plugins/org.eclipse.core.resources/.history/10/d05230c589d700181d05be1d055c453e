@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <input type="text" name="num" data-validation="number" 
+    data-validation-allowing="negative,number" input name="color" 
+    data-validation="number" datavalidation-ignore="$" required="required" class="form-control" 
+    id="phone_no" placeholder="Phone Number" maxlength="6" pattern="\d*">
+</body>
+</html>

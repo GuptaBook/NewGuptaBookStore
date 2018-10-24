@@ -54,23 +54,27 @@ String rootContext = request.getServletContext().getRealPath("/");
 		
 		EmpDao empDao=new EmpDaoImpl();
 		Emp e=empDao.empLogin(email);
+		System.out.println(e.getEmail()+" "+email+" "+e.getPassword()+" "+password);
 		if(e.getEmail()==null)
 		{
 			System.out.println("Email is not Registered");
 			System.out.println("Redirecting to Registration page");
-			response.sendRedirect("EmpRegis.jsp");
+			response.sendRedirect("views/emp/LoginPage.jsp");
 		}
 		else if(e.getEmail().equals(email))
 		{
 			System.out.println("Email Registered i.e,Registered User");
 		}
-		else if(password.equals(e.getPassword()))
+		if(password.equals(e.getPassword()))
 		{
 			System.out.println("Logged in");
 			HttpSession session=request.getSession();  
 			session.setAttribute("email",e.getEmail());
 			session.setAttribute("role",e.getRole());
+			response.sendRedirect("FetchAllAuthoServlet");
 		}
+		else 
+			response.sendRedirect("views/emp/LoginPage.jsp");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		doGet(request, response);
 		

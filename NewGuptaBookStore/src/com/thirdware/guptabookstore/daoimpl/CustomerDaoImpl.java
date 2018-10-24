@@ -20,7 +20,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		else
 		{
-			String query="insert into customer values(?,?,?,?,?,?)";
+			String query="insert into customer(cid,cname,email,phoneno,roleid,password) values(?,?,?,?,?,?)";
 			try
 			{
 				PreparedStatement pstmt=con.prepareStatement(query);
@@ -28,10 +28,9 @@ public class CustomerDaoImpl implements CustomerDao {
 				pstmt.setString(2,customer.getCname());
 				pstmt.setString(3,customer.getEmail());
 				pstmt.setString(4,customer.getPhoneno());
-				pstmt.setString(5,customer.getRole());
+				pstmt.setInt(5,customer.getRoleid());
 				pstmt.setString(6,customer.getPassword());
 				int count=pstmt.executeUpdate();
-	
 				if(count>0)
 				{
 					System.out.println("Records affected:"+count);
@@ -99,9 +98,8 @@ public class CustomerDaoImpl implements CustomerDao {
 					customer.setCname(rs.getString(2));
 					customer.setEmail(rs.getString(3));
 					customer.setPhoneno(rs.getString(4));
-					customer.setRole(rs.getString(5));
-					customer.setPassword(rs.getString(6));
-					
+					customer.setPassword(rs.getString(5));
+					customer.setRoleid(rs.getInt(6));					
 				}
 				if(con!=null)
 					con.close();
@@ -115,6 +113,32 @@ public class CustomerDaoImpl implements CustomerDao {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String role(int id) {
+		// TODO Auto-generated method stub
+		String name="";
+		if(con==null)
+		{
+			System.out.println("Not Connected,Try again");
+			return null;
+		}
+		else
+		{
+			String query="select rolename from role where roleid=?";
+			try
+			{
+				PreparedStatement pstmt=con.prepareStatement(query);
+				pstmt.setInt(1,id);
+				ResultSet rs=pstmt.executeQuery();
+				while(rs.next())
+					name=rs.getString(1);
+				return name;
+				
+			}catch(Exception e){System.out.println(e);}
+		return null;
+	}
 	}
 }
 

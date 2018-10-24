@@ -6,7 +6,7 @@ public class Customer {
 	private String cname;
 	private String email;
 	private String phoneno;
-	private String role;
+	private int roleid;
 	private String password;
 	
 	public int getCid() {
@@ -37,11 +37,11 @@ public class Customer {
 	public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
 	}
-	public String getRole() {
-		return role;
+	public int getRoleid() {
+		return roleid;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
 	}
 	public String getPassword() {
 		return password;

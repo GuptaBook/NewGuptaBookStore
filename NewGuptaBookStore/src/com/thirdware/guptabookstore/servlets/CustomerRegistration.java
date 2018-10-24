@@ -47,7 +47,7 @@ public class CustomerRegistration extends HttpServlet {
 		System.out.println("entering into the registration servlet");
 		String rootContext = request.getServletContext().getRealPath("/");
 		// int cid=Integer.parseInt(request.getParameter("cid"));
-		String cname = request.getParameter("cname");
+		String cname = request.getParameter("uname");
 		String email = request.getParameter("email");
 		String phoneno = request.getParameter("phoneno");
 		// String role=request.getParameter("role");
@@ -58,9 +58,9 @@ public class CustomerRegistration extends HttpServlet {
 			System.out.println("email is exist i.e,Already Registered");
 			System.out.println(c.getCname() + " " + c.getPassword());
 			System.out.println("Redirecting to Registration page");
-			String msg = "Email is existing so try with other email";
+			String msg ="Email is existing so try with other email";
 			request.setAttribute("error", msg);
-			RequestDispatcher rd = request.getRequestDispatcher("CustRegis.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("views/customer/CustRegis.jsp");
 			rd.forward(request, response);
 			// response.sendRedirect("CustRegis.jsp");
 		} else {
@@ -70,12 +70,16 @@ public class CustomerRegistration extends HttpServlet {
 			customer.setCname(cname);
 			customer.setEmail(email);
 			customer.setPhoneno(phoneno);
-			customer.setRole("ROLE_USER");
+			customer.setRoleid(3);
 			customer.setPassword(password);
 			System.out.println(customer.getCid() + " " + cname);
 			Customer cust = customerDao.customerRegister(customer);					
 			System.out.println("Registered Successfully");
 			response.getWriter().append("Served at: ").append(request.getContextPath());
+			request.setAttribute("username", cust.getCname());
+			request.setAttribute("msg", "Successfully registered!");
+			RequestDispatcher rd = request.getRequestDispatcher("views/emp/LoginPage.jsp");
+			rd.forward(request, response);
 			doGet(request, response);
 		}
 	}

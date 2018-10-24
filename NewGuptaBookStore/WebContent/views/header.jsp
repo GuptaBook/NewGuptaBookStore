@@ -1,3 +1,4 @@
+<%@page import="com.thirdware.guptabookstore.models.Subject"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!-- <<<<<<< HEAD -->
@@ -14,14 +15,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<c:if test="${sessionScope.email!=null }"><h3 align="center">Hi ${sessionScope.email}</h3></c:if>
+<c:if test="${sessionScope.email!=null }"><h3 align="center">Hi ${sessionScope.username}</h3></c:if>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Gupta Book Store</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="<c:url value='home.jsp'/>">Home</a></li>
+      <li class="active"><a href="<c:url value='/views/home.jsp'/>">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Author <span class="caret"></span></a>
         <ul class="dropdown-menu">
         <c:forEach items="${sessionScope.listAuthor}" var="auth">
@@ -36,7 +37,21 @@
         </c:forEach>        
         </ul>
       </li><c:url value="FetchAllBookServlet" var="url"/>
-      <li><a href="${url}">Books</a></li><c:url value="/FetchBookBySearchServlet" var="url"/>
+      <li><a href="${url}">Books</a></li>
+      <c:if test="${sessionScope.email!=null }">
+    <c:if test="${sessionScope.rolename=='ROLE_EMPLOYEE' }">
+    <li><a href="<c:url value='/FetchSubAuth'/>">Book Modification</a></li>
+    <li><a href="<c:url value='/FetchInsertServlet'/>">Author Modification</a></li>
+    <li><a href="<c:url value='/FetchInsertSubjectServlet'/>">Subject Modification</a></li>
+    </c:if>
+    </c:if>
+      <c:if test="${sessionScope.email!=null }">
+    <c:if test="${sessionScope.rolename=='ROLE_ADMIN' }">
+    <li><a href="<c:url value='/Fetch'/>">Book Approval or Reject</a></li>
+    <li><a href="<c:url value='/views/emp/EmpRegis.jsp'/>">Employee Registratoin</a></li>
+    </c:if>
+    </c:if>
+      <c:url value="/FetchBookBySearchServlet" var="url"/><li>
       <form class="navbar-form" action="${url }">
         <div class="form-group" style="display:inline;">
           <div class="input-group">
@@ -44,11 +59,11 @@
             <span class="input-group-addon"><button class="glyphicon glyphicon-search"></button></span>
           </div>
         </div>
-      </form>
+      </form>      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     <c:if test="${sessionScope.email!=null }">
-    <c:if test="${sessionScope.role=='ROLE_USER' }">
+    <c:if test="${sessionScope.rolename=='ROLE_USER' }">
     <li><a href="<c:url value='/FetchCartServlet'/>"><span class="glyphicon glyphicon-shopping-cart"></span></a></li></c:if>
     <li><a href="<c:url value='/views/logout.jsp'/>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </c:if>

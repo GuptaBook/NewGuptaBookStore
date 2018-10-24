@@ -74,7 +74,7 @@ public class InsertBookServlet extends HttpServlet {
 			System.out.println("Description: " + description);
 
 			// Gets absolute path to root directory of web app.
-			String appPath = "C:/OnlineGuptaBook/OnlineGuptaBookStore/OnlineGuptaBookStore/WebContent/resources/images";
+			String appPath = "C:/Users/Nisho.p/Projects/OnlineGuptaBookStore/WebContent/resources/images/";
 			appPath = appPath.replace('\\', '/');
 
 			// The directory to save uploaded file
@@ -102,11 +102,11 @@ public class InsertBookServlet extends HttpServlet {
 				}
 			}
 			// Upload successfully!.
-			response.sendRedirect(request.getContextPath() + "/insertbook.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/book/insertbook.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Error: " + e.getMessage());
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/insertbook.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/book/insertbook.jsp");
 			dispatcher.forward(request, response);
 			doGet(request, response);
 		}

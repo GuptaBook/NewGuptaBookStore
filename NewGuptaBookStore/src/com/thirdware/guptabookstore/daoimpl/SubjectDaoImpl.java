@@ -54,7 +54,7 @@ public class SubjectDaoImpl implements SubjectDao {
 			System.out.println("Not connected, Please check");
 			return null;
 		} else {
-			String query = "select * from book where subid = ?";
+			String query = "select * from book where bookstatus=1 and subid = ?";
 			try {
 				List<Book> ls=new ArrayList<>();
 

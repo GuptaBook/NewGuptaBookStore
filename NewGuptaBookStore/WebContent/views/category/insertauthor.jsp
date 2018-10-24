@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head><%@ include file="../header.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert Author</title>
 </head>
@@ -14,8 +14,7 @@
 		Description<input type="text" name="authdesc"><br> <input
 			type="submit" value="submit">
 	</form>
-	<table>
-
+		<table border="2" align="center">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -26,9 +25,9 @@
 		<tbody>
 			<c:forEach items="${listAuthor}" var="list">
 				<tr>
-					<td>${list.authorid}</td>
-					<td>${list.authorname}</td>
-					<td>${list.authordescription}</td>
+					<td>${list.authid}</td>
+					<td>${list.authname}</td>
+					<td>${list.authdesc}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
